@@ -1,0 +1,167 @@
+<resources>
+
+    <!-- ____________________________________XML files _______________________________________ -->
+
+    <!-- activity_invite -->
+    <string name="insert_email">"Si el correo del usuario no existe \nenviaras un mensaje invitandol@ a unirse"</string>
+    <string name="invite">Invitar</string>
+    <string name="invited">Usuario Agregado</string>
+    <string name="new_user_invitation">enviando mensaje</string>
+    <string name="email">email@dominio.com</string>
+
+    <!-- activity_main -->
+    <string name="name">Nombre</string>
+    <string name="clo_ses">Cerrar sesión</string>
+    <string name="total">Total</string>
+    <string name="total_deb">Total débito: </string>
+
+    <!-- activity_mod -->
+    <string name="new_name">Nombre del nuevo grupo</string>
+    <string name="new_icon">Nuevo icono</string>
+    <string name="new_noti">Nueva notificación</string>
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+
+    <!-- autentification -->
+    <string name="password">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="example">Prueba: daniel@daniel.com   danieldaniel</string>
+
+    <!-- items_activity -->
+    <string name="items_into">Gastos en </string>
+
+    <!-- list_header_row -->
+
+    <!-- listview_groups_row -->
+    <string name="tvmess1">Lista modificada</string>
+    <string name="tvmess2">Notificación</string>
+    <string name="textview">Texto</string>
+    <string name="div_deb">Débito dividido</string>
+    <string name="gro_deb">Débito del grupo</string>
+    <string name="cur_deb">EUR</string>
+
+    <!-- listview_items_row -->
+    <string name="price">Precio</string>
+    <string name="currency">Moneda</string>
+    <string name="alert">Alerta</string>
+    <!--<string name="name">Name</string> -->
+
+    <!-- login -->
+    <string name="user_name">Ingrese su nombre de usuario</string>
+    <string name="phone_number">Ingrese su numero telefónico</string>
+    <string name="email_id">Ingrese su e-mail</string>
+    <string name="pass_id">Ingrese su contraseña</string>
+    <string name="signup">Inscribirse</string>
+    <!--<string name="login">Log in</string>-->
+
+    <!-- new_group -->
+    <!--<string name="new_name">New group name</string>-->
+    <string name="upl_pho">Cargar foto</string>
+    <!-- <string name="save">Save</string>
+    <string name="cancel">Cancel</string> -->
+
+    <!-- new_item -->
+    <string name="new_item_name">Nombre del nuevo producto</string>
+    <string name="add_item_name">Agregar otro producto</string>
+
+    <!--<string name="price">Price</string>
+    <string name="currency">Currency</string>
+    <string name="alert">Alert</string>
+    <string name="upl_pho">Upload Photo</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>-->
+    <string-array name="currencies_array">
+        <item>US</item>
+        <item>EUR</item>
+        <item>COP</item>
+        <item>GBP</item>
+        <item>AUD</item>
+        <item>CHF</item>
+        <item>AED</item>
+        <item>HRK</item>
+    </string-array>
+
+    <!-- menu_main -->
+    <string name="action_settings">Configuraciones</string>
+    <string name="see_members">Ver miembros</string>
+    <string name="inv_friend">Invitar amigos</string>
+    <string name="mod_group">Modificar grupo</string>
+    <string name="lea_group">Abandonar grupo</string>
+
+
+    <!-- ____________________________________JAVA files _______________________________________ -->
+
+    <!-- Autentification_old_user -->
+    <string name="error_invalid_password">La contraseña es demasiado corta</string>
+    <string name="error_invalid_email">El email es inválido</string>
+    <string name="error_field_required">Campo requerido</string>
+    <string name="cor_login">Ingreso correcto</string>
+    <!--<string name="error_incorrect_password">This password is incorrect</string>-->
+
+    <!-- CustomApplication -->
+
+    <!-- Invite_Activity -->
+    <string name="invite_to">Invitando a</string>
+    <string name="mail_to">Mail to: </string>
+    <string name="invitation">Tienes una invitación a participar en el grupo </string>
+    <string name="link"> usa este enlace Https://example.com/</string>
+    <string name="our_app"> para unirte. Si tú no tienes la aplicación, instala esta usando
+        el siguien enlace (HERE LINK TO GOOGLE PLAY STORE).</string>
+    <string name="sub">Asunto</string>
+    <string name="send_mail">Enviando mail...</string>
+    <string name="no_mail">No hay un cliente email instalado.</string>
+
+    <!-- items_activity -->
+    <string name="leaving">Abandonando grupo</string>
+    <string name="leave_sure">¿Estás seguro de abandonar el grupo?</string>
+
+    <!-- login_new_user -->
+    <string name="aut_failed">Autentificación fallida</string>
+    <string name="error">Requerido</string>
+    <string name="loading">Cargando!!!</string>
+    <string name="error_incorrect_password">La contraseña es incorecta</string>
+
+    <!-- MainActivity -->
+    <string name="group_changed">Tu lista del grupo ha cambiado</string>
+    <string name="welcome">Bienvenido: </string>
+    <string name="back">Si quieres salir, da nuevament click en atrás </string>
+
+    <!-- members_activity -->
+    <string name="members_into">Miembros del grupo</string>
+
+    <!-- ModifyActivity -->
+    <string name="modify">Modificar </string>
+
+
+    <!-- new_group_activity -->
+    <string name="new_group">Creando grupo nuevo </string>
+
+
+    <!-- new_item_activity -->
+    <string name="creatin_item_into">Creando gasto en </string>
+    <!-- User -->
+
+
+    <!-- ____________________________________Others _______________________________________ -->
+
+    <string name="app_name">Lab2</string>
+
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Registrarse</string>
+    <string name="action_sign_in_short">Registrarse</string>
+
+    <string name="permission_rationale">"Permiso de contactos son nesecitados para proveer
+        completación de email."
+    </string>
+
+    <string name="action_logout"> Cerrar sesión</string>
+    <string name="facebook_app_id">YOUR_APP_ID</string>
+    <string name="title_activity_autentification">Sign in</string>
+
+    <string name="app_code">b86y3</string>
+
+</resources>

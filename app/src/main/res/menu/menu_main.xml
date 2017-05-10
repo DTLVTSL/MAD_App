@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="mad.listv.MainActivity">
+
+    <item
+        android:id="@+id/action_seeIndividuals"
+        android:orderInCategory="100"
+        android:title="@string/see_members"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_invitePeople"
+        android:orderInCategory="100"
+        android:title="@string/inv_friend"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_ModifyGroup"
+        android:orderInCategory="100"
+        android:title="@string/mod_group"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_leaveGroup"
+        android:orderInCategory="100"
+        android:title="@string/lea_group"
+        app:showAsAction="never" />
+
+</menu>

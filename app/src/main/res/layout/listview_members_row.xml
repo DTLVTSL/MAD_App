@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_weight="10">
+
+    <ImageView
+        android:id="@+id/member_image"
+        android:layout_width="94dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="2.99"
+        android:src="@drawable/man" />
+
+    <TextView
+        android:id="@+id/member_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+
+        android:text="member_name"
+        android:textSize="24sp"
+        android:layout_toRightOf="@+id/member_image"
+        android:layout_toEndOf="@+id/member_image" />
+
+    <TextView
+        android:id="@+id/member_number"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
+        android:layout_weight="2"
+        android:text="member_number"
+        android:layout_below="@+id/editText"
+        android:layout_alignBottom="@+id/member_image"
+        android:layout_toRightOf="@+id/member_image"
+        android:layout_toEndOf="@+id/member_image" />
+
+    <TextView
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="tel: "
+        tools:text="tel:"
+        android:layout_below="@+id/member_name"
+        android:layout_toRightOf="@+id/member_image"
+        android:layout_toEndOf="@+id/member_image" />
+
+
+</RelativeLayout>

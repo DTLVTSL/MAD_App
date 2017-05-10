@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.example.mad.lab2.Items_activity"
+    android:weightSum="1">
+
+    <ListView
+        android:id="@+id/lista2"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_weight="0.23">
+    </ListView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/margenes_fab"
+        android:src="@android:drawable/ic_input_add"
+        app:elevation="12dp"
+        app:backgroundTint="#ff0000ff"
+        app:fabSize="mini"
+        android:layout_weight="0.18"
+        android:clickable="true" />
+
+
+
+
+</LinearLayout>

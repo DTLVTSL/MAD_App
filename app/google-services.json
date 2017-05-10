@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "866804920067",
+    "firebase_url": "https://segunda-prueba-4997c.firebaseio.com",
+    "project_id": "segunda-prueba-4997c",
+    "storage_bucket": "segunda-prueba-4997c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866804920067:android:34268429a7640de5",
+        "android_client_info": {
+          "package_name": "com.example.mad.lab2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866804920067-aunvtu21hq8ivfbgokkl9pvsmt8nee2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO_70E8crkIx8n5Rb4ze12_NmtY9v23j4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
