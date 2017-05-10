@@ -130,11 +130,11 @@ public class ModifyItemActivity extends AppCompatActivity {
                     //Storing values to firebase
                     ref.child(ItemName).setValue(new_item);
 
-                    Intent i = new Intent(ModifyItemActivity.this, Items_activity.class);
+                   /* Intent i = new Intent(ModifyItemActivity.this, Items_activity.class);
                     i.putExtra("GroupID", GroupID);
                     i.putExtra("GroupName", GroupName);
                     startActivity(i);
-                    finish();
+                    finish();*/
                     finish();
                 }
 
