@@ -94,4 +94,14 @@
         android:layout_toLeftOf="@+id/mod_item_save"
         android:layout_toStartOf="@+id/mod_item_save" />
 
+    <Button
+        android:id="@+id/delete_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/mod_item_alert"
+        android:layout_alignRight="@+id/mod_item_alert"
+        android:layout_below="@+id/mod_item_save"
+        android:layout_marginTop="28dp"
+        android:text="Delete Item" />
+
 </RelativeLayout>

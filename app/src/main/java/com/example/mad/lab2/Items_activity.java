@@ -227,35 +227,52 @@ public class Items_activity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                TextView v= (TextView)view.findViewById(R.id.items_name);
-                final String item_name= (String) v.getText();
+                try {
+                    TextView v = (TextView) view.findViewById(R.id.items_name);
+                    final String item_name = (String) v.getText();
 
-                new AlertDialog.Builder(Items_activity.this)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle(getString(R.string.Modify_Item))
-                        //.setTitle(getString(R.string.leaving))
-                        .setMessage(getString(R.string.do_you_want_to_modify_it))
-                        //.setMessage(getString(R.string.leave_sure))
-                        .setPositiveButton(getString(R.string.Yes), new DialogInterface.OnClickListener()
-                        {
+                    TextView v2 = (TextView) view.findViewById(R.id.items_price);
+                    final String item_price = (String) v2.getText();
 
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(getApplicationContext(),item_name, Toast.LENGTH_SHORT).show();
+                    TextView v3 = (TextView) view.findViewById(R.id.items_currency);
+                    final String item_currency = (String) v3.getText();
 
-                                //Stiben
-                                Intent i = new Intent(Items_activity.this, ModifyItemActivity.class);
-                                i.putExtra("GroupID", GroupID);
-                                i.putExtra("GroupName", GroupName);
-                                i.putExtra("ItemName", item_name);
-                                startActivity(i);
-                                //////End Stiben
-                            }
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
+                    TextView v4 = (TextView) view.findViewById(R.id.items_alert);
+                    final String item_alert = (String) v4.getText();
 
-                return false;
+                    new AlertDialog.Builder(Items_activity.this)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setTitle(getString(R.string.Modify_Item))
+                            //.setTitle(getString(R.string.leaving))
+                            .setMessage(getString(R.string.do_you_want_to_modify_it))
+                            //.setMessage(getString(R.string.leave_sure))
+                            .setPositiveButton(getString(R.string.Yes), new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Toast.makeText(getApplicationContext(), item_name, Toast.LENGTH_SHORT).show();
+
+                                    //Stiben
+                                    Intent i = new Intent(Items_activity.this, ModifyItemActivity.class);
+                                    i.putExtra("GroupID", GroupID);
+                                    i.putExtra("GroupName", GroupName);
+                                    i.putExtra("ItemName", item_name);
+                                    i.putExtra("Item_price", item_price);
+                                    i.putExtra("Item_currency", item_currency);
+                                    i.putExtra("Item_alert", item_alert);
+                                    startActivity(i);
+                                    //////End Stiben
+                                }
+                            })
+                            .setNegativeButton("No", null)
+                            .show();
+
+                }catch (Exception e){
+                    Log.d("ja","ja");
+                }
+
+                    return false;
+
             }
         });
 

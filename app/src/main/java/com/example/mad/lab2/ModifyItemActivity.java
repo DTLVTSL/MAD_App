@@ -32,10 +32,14 @@ public class ModifyItemActivity extends AppCompatActivity {
     private EditText Mod_item_alert;
     private Button Mod_item_save;
     private Button but_cancel;
+    private Button delete_item;
 
     private String GroupID;
     private String GroupName;
     private String ItemName;
+    private String Item_price;
+    private String Item_currency;
+    private String Item_alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,8 @@ public class ModifyItemActivity extends AppCompatActivity {
         Mod_item_alert = (EditText) findViewById(R.id.mod_item_alert);
         Mod_item_save = (Button) findViewById(R.id.mod_item_save);
         but_cancel = (Button) findViewById(R.id.mod_item_cancell);
+
+        delete_item= (Button) findViewById(R.id.delete_item);
 
         //Spiner
         final Spinner spinner_cur = (Spinner) findViewById(R.id.mod_spin_item_currency);
@@ -63,6 +69,25 @@ public class ModifyItemActivity extends AppCompatActivity {
         GroupID =bundle.getString("GroupID");
         GroupName=bundle.getString("GroupName");
         ItemName =bundle.getString("ItemName");
+        Item_price=bundle.getString("Item_price");
+        Item_currency=bundle.getString("Item_currency");
+        Item_alert=bundle.getString("Item_alert");
+
+
+        Mod_item_name.setText(ItemName);
+        Mod_item_price.setText(Item_price);
+        //new_item_currency = (EditText) findViewById(R.id.new_item_currency);
+        Mod_item_alert.setText(Item_alert);
+
+
+        ////spinner try
+        String compareValue = Item_currency;
+        if (!compareValue.equals(null)) {
+            int spinnerPosition = adap.getPosition(compareValue);
+            spinner_cur.setSelection(spinnerPosition);
+        }
+
+        ////spinner try end
 
         setTitle(getString(R.string.modify)+" "+ItemName);
 
@@ -117,7 +142,19 @@ public class ModifyItemActivity extends AppCompatActivity {
             }
         });
 
+        delete_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Firebase ref = new Firebase(Config.FIREBASE_URL).child("Groups").child(GroupID).child("Items").child(ItemName);
+                ref.removeValue();
+                finish();
+            }
+        });
+
     }
+
+
 
     //Click Listener for button
     public void cancel_new_group() {
