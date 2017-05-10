@@ -29,6 +29,10 @@
 
     <!-- items_activity -->
     <string name="items_into">Items into </string>
+    <string name="You_have_already_paid">You have already paid</string>
+    <string name="you_have_not_paid_this_debit">You have not paid this debit</string>
+    <string name="Modify_Item">Modify Item</string>
+    <string name="do_you_want_to_modify_it">Do you want to modify it?</string>
 
 
     <!-- list_header_row -->
@@ -64,9 +68,7 @@
     <!-- new_item -->
     <string name="new_item_name">New item name</string>
     <string name="add_item_name">Add another item</string>
-
-
-
+    <string name="error_num">Invalid number</string>
     <!--<string name="price">Price</string>
     <string name="currency">Currency</string>
     <string name="alert">Alert</string>
@@ -74,8 +76,8 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>-->
     <string-array name="currencies_array">
-        <item>US</item>
         <item>EUR</item>
+        <item>US</item>
         <item>COP</item>
         <item>GBP</item>
         <item>AUD</item>
@@ -99,6 +101,7 @@
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_field_required">This field is required</string>
     <string name="cor_login">Correct log in</string>
+    <string name="error_login">Wrong email or password</string>
     <!--<string name="error_incorrect_password">This password is incorrect</string>-->
 
     <!-- CustomApplication -->
@@ -123,6 +126,7 @@
     <string name="error">Required</string>
     <string name="loading">Loading!!!</string>
     <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="form">Invalid form</string>
 
     <!-- MainActivity -->
     <string name="group_changed">Your group list has changed</string>
@@ -148,6 +152,10 @@
 
 
     <!-- ____________________________________Others _______________________________________ -->
+
+    <string name="Yes">Yes</string>
+    <string name="PAID">PAID</string>
+
 
     <string name="app_name">Lab2</string>
 

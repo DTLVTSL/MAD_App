@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="firebase-invites-9.0.2">
     <CLASSES>
-      <root url="file://$USER_HOME$/.android/build-cache/0340c8011bb07b3c844f789e7e8cab450601a383/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/0340c8011bb07b3c844f789e7e8cab450601a383/output/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/e8f3b4b585f1f06b39adf4afe6f84194deff7a0c/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/e8f3b4b585f1f06b39adf4afe6f84194deff7a0c/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

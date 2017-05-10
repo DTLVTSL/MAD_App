@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +24,8 @@ public class groups_adapter extends ArrayAdapter<groups_class> {
     int layoutResourceId;
 
     private ArrayList<doubts_class> data_doubts;
-    //private String currency;
 
 
-    //groups_class data[] = null;
 
     //Constructor
     public groups_adapter(Context context, int layoutResourceId, ArrayList<groups_class> data, ArrayList<doubts_class> doubts){
@@ -36,6 +35,7 @@ public class groups_adapter extends ArrayAdapter<groups_class> {
         this.layoutResourceId = layoutResourceId;
         this.data = data;
         this.data_doubts=doubts;
+
         //this.currency=currency;
 
     }
@@ -62,6 +62,7 @@ public class groups_adapter extends ArrayAdapter<groups_class> {
             holder.currency=(TextView) row.findViewById(R.id.debit_currency);
             /////velez april 30 end
 
+            holder.paid_boolean= (TextView) row.findViewById(R.id.group_paid);
 
             row.setTag(holder);
         }else{
@@ -81,6 +82,17 @@ public class groups_adapter extends ArrayAdapter<groups_class> {
         holder.currency.setText(doubt.getCurrency());
         /////velez april 30 end
 
+
+        if (doubt.getPaid()==true) {
+            holder.paid_boolean.setText("PAID");
+            holder.paid_boolean.setTextColor(Color.parseColor("#009900"));
+            holder.paid_boolean.setBackgroundColor(Color.parseColor("#ffffff"));
+        }
+        else {
+            holder.paid_boolean.setText("");
+            //holder.paid_boolean.setTextColor(Color.parseColor("#009900"));
+            //holder.paid_boolean.setBackgroundColor(Color.parseColor("#ffffff"));
+        }
 
        /* holder.image.setImageResource(group.icon);*/
         Bitmap bitmap = BitmapFactory.decodeFile(String.valueOf(group.getIcon()));
@@ -106,6 +118,7 @@ public class groups_adapter extends ArrayAdapter<groups_class> {
         TextView divided_doubt;
         TextView currency;
 
+        TextView paid_boolean;
 
     }
 

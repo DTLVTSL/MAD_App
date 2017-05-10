@@ -191,5 +191,15 @@
         android:layout_alignParentRight="true"
         android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/group_paid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divided_doubt"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@+id/text1"
+        android:layout_toStartOf="@+id/text1" />
+
 
 </RelativeLayout>

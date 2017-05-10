@@ -101,13 +101,13 @@ public class items_adapter extends ArrayAdapter<items_class> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         View row = convertView;
-        items_adapter.items_holder holder = null;
+        items_holder holder = null;
 
         if (row == null){
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
 
-            holder = new items_adapter.items_holder();
+            holder = new items_holder();
             holder.image = (ImageView) row.findViewById(R.id.items_ima1);
             holder.name = (TextView) row.findViewById(R.id.items_name);
             holder.alert = (TextView) row.findViewById(R.id.items_alert);
@@ -118,7 +118,7 @@ public class items_adapter extends ArrayAdapter<items_class> {
             //holder.textnot = (TextView) row.findViewById(R.id.text2);
             row.setTag(holder);
         }else{
-            holder = (items_adapter.items_holder)row.getTag();
+            holder = (items_holder)row.getTag();
         }
 
         items_class pos_gro = data.get(position);

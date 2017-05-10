@@ -2,6 +2,7 @@ package com.example.mad.lab2;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +25,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.google.android.gms.auth.api.Auth;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +33,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
+
+import static com.example.mad.lab2.R.id.total_debit;
 
 public class Items_activity extends AppCompatActivity {
 
@@ -40,6 +45,15 @@ public class Items_activity extends AppCompatActivity {
     private String GroupName;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mDatabaseReference = database.getReference();
+
+    TextView total_debit;
+    TextView divided_debit;
+    TextView paid_text;
+
+    Button paid_button;
+    boolean paid=false;
+
+    float total_price=0;
 
 
 
@@ -74,11 +88,12 @@ public class Items_activity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 data_items.clear();
+
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
 
 
                     //Log.d("AndroidBash", "item_activity: " + postSnapshot.toString());
-                    Log.d("AndroidBash", "item_activity: " + postSnapshot.getValue().toString());
+                    Log.d("AndroidBash", "item_activity: " + postSnapshot.child("price").getValue().toString());
 
                     items_class item= postSnapshot.getValue(items_class.class);
                     item.setIcon(2130837589);   //HABIA ERROR POR EL NUMERO ENVIADO EN LA IMAGEN
@@ -88,11 +103,109 @@ public class Items_activity extends AppCompatActivity {
                     ListView = (ListView) findViewById(R.id.lista2);
                     ListView.setAdapter(adapter);
 
+                    total_price=total_price+Float.parseFloat((String) postSnapshot.child("price").getValue());
+
+
                 }
+
+                total_debit= (TextView) findViewById(R.id.total_debit_items);
+                total_debit.setText(String.valueOf(total_price));
+
             }
 
             @Override
             public void onCancelled(FirebaseError error) {
+            }
+        });
+
+
+        //////// get members
+        Firebase firebase2 = new Firebase(Config.FIREBASE_URL).child("Groups").child(GroupID);
+        //firebase = new Firebase(FIREBASE_URL).child(FIREBASE_CHILD);
+
+        firebase2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                float total_members=snapshot.child("members").getChildrenCount();
+
+                divided_debit= (TextView) findViewById(R.id.divided_debit_items);
+                divided_debit.setText(String.valueOf(total_price/total_members));
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                float total_members=1;
+            }
+        });
+
+        Firebase.setAndroidContext(this);
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+        final String userID=mAuth.getCurrentUser().getUid();
+
+        Firebase firebase3 = new Firebase(Config.FIREBASE_URL).child("Groups").child(GroupID).child("members").child(userID);
+        //firebase = new Firebase(FIREBASE_URL).child(FIREBASE_CHILD);
+
+        firebase3.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                paid= (boolean) snapshot.child("paid").getValue();
+
+                paid_text= (TextView) findViewById(R.id.Paid_items);
+                if (total_price>0) {
+                    if (paid == true) {
+                        paid_text.setText(getString(R.string.You_have_already_paid));
+                        paid_text.setTextColor(Color.parseColor("#009900"));
+                    } else {
+
+                        paid_text.setText(getString(R.string.you_have_not_paid_this_debit));
+                        paid_text.setTextColor(Color.parseColor("#ff0000"));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                float total_members=1;
+            }
+
+
+        });
+
+        paid_button= (Button) findViewById(R.id.paid_button);
+
+        paid_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Firebase firebase4 = new Firebase(Config.FIREBASE_URL).child("Groups").child(GroupID).child("members").child(userID);
+                //firebase = new Firebase(FIREBASE_URL).child(FIREBASE_CHILD);
+
+                firebase4.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        //boolean paid= (boolean) snapshot.child("paid").getValue();
+
+                        if (paid == true) {
+                            firebase4.child("paid").setValue(false);
+                        } else {
+                            firebase4.child("paid").setValue(true);
+                            //Toast.makeText(Items_activity.this, "You have paid",Toast.LENGTH_LONG);
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+                        float total_members=1;
+                    }
+
+
+                });
+
+
+
+
             }
         });
 
@@ -119,11 +232,11 @@ public class Items_activity extends AppCompatActivity {
 
                 new AlertDialog.Builder(Items_activity.this)
                         .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Modify Item")
+                        .setTitle(getString(R.string.Modify_Item))
                         //.setTitle(getString(R.string.leaving))
-                        .setMessage("do you want to modify it?")
+                        .setMessage(getString(R.string.do_you_want_to_modify_it))
                         //.setMessage(getString(R.string.leave_sure))
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                        .setPositiveButton(getString(R.string.Yes), new DialogInterface.OnClickListener()
                         {
 
                             @Override

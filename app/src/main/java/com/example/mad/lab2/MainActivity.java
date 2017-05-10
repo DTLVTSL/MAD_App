@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
         final ArrayList<groups_class> data_groups2 = new ArrayList<groups_class>();
         final ArrayList<doubts_class> data_doubts= new ArrayList<doubts_class>();
 
+
         final groups_adapter adapter = new groups_adapter(this, R.layout.listview_groups_row, data_groups2,data_doubts);
 
         // MOSTRAR LOS GRUPOS Q SE SACARON DE LA LISTA EN EL LIST
@@ -160,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 data_groups2.clear();
                 data_doubts.clear();
+
 
                 float all_doubts=0;
 
@@ -220,16 +222,20 @@ public class MainActivity extends AppCompatActivity {
                             paid = Boolean.parseBoolean(postSnapshot.child("members").child(userID).child("paid").getValue().toString());
                         }catch (Exception e){paid=false;}
 
-                        if(paid==false){all_doubts=all_doubts+divided_price;}
+                        if(paid==false){
+                            all_doubts=all_doubts+divided_price;
+
+                        }
+                        //paid_boolean.add(paid);
 
                         data_groups2.add(group2);
                         //data_doubts.add(new doubts_class(total_price,divided_price));
 
                         if (same_currency) {
 
-                            data_doubts.add(new doubts_class(total_price,divided_price,temporal_currency));
+                            data_doubts.add(new doubts_class(total_price,divided_price,temporal_currency,paid));
                         }
-                        else {data_doubts.add(new doubts_class(total_price,divided_price));}
+                        else {data_doubts.add(new doubts_class(total_price,divided_price,paid));}
 
 
 
@@ -336,22 +342,25 @@ class doubts_class {
     public float total;
     public float divided;
     public String currency;
+    public boolean paid;
 
     public doubts_class(){
         super();
     }
 
-    public doubts_class( float total,float divided,String currency){
+    public doubts_class( float total,float divided,String currency, boolean paid){
         super();
         this.total = total;
         this.divided = divided;
         this.currency=currency;
+        this.paid=paid;
     }
-    public doubts_class( float total,float divided){
+    public doubts_class( float total,float divided,boolean paid){
         super();
         this.total = total;
         this.divided = divided;
         this.currency="";
+        this.paid=paid;
     }
 
     public void setTotal( float total){this.total=total;}
@@ -362,5 +371,8 @@ class doubts_class {
 
     public void setCurrency( String d){this.currency=d;}
     public String getCurrency(){return String.valueOf(this.currency);}
+
+    public void setPaid(boolean p){this.paid=p;}
+    public boolean getPaid(){return this.paid;}
 
 }

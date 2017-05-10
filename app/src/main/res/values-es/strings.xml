@@ -29,6 +29,11 @@
 
     <!-- items_activity -->
     <string name="items_into">Gastos en </string>
+    <string name="You_have_already_paid">Ya has pagado</string>
+    <string name="you_have_not_paid_this_debit">Aun no has pagado tu deuda</string>
+    <string name="Modify_Item">Modificar gasto</string>
+    <string name="do_you_want_to_modify_it">Quieres modificarlo?</string>
+
 
     <!-- list_header_row -->
 
@@ -63,7 +68,7 @@
     <!-- new_item -->
     <string name="new_item_name">Nombre del nuevo producto</string>
     <string name="add_item_name">Agregar otro producto</string>
-
+    <string name="error_num">Número inválido</string>
     <!--<string name="price">Price</string>
     <string name="currency">Currency</string>
     <string name="alert">Alert</string>
@@ -71,8 +76,8 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>-->
     <string-array name="currencies_array">
-        <item>US</item>
         <item>EUR</item>
+        <item>US</item>
         <item>COP</item>
         <item>GBP</item>
         <item>AUD</item>
@@ -96,6 +101,7 @@
     <string name="error_invalid_email">El email es inválido</string>
     <string name="error_field_required">Campo requerido</string>
     <string name="cor_login">Ingreso correcto</string>
+    <string name="error_login">Email o contraseña errónea</string>
     <!--<string name="error_incorrect_password">This password is incorrect</string>-->
 
     <!-- CustomApplication -->
@@ -120,6 +126,7 @@
     <string name="error">Requerido</string>
     <string name="loading">Cargando!!!</string>
     <string name="error_incorrect_password">La contraseña es incorecta</string>
+    <string name="form">Formulario inválido</string>
 
     <!-- MainActivity -->
     <string name="group_changed">Tu lista del grupo ha cambiado</string>
@@ -143,6 +150,8 @@
 
 
     <!-- ____________________________________Others _______________________________________ -->
+    <string name="Yes">Si</string>
+    <string name="PAID">PAGADO</string>
 
     <string name="app_name">Lab2</string>
 

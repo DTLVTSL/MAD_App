@@ -3,6 +3,7 @@ package com.example.mad.lab2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -70,67 +71,63 @@ public class ModifyActivity extends AppCompatActivity {
                 final Firebase refmod = new Firebase(Config.FIREBASE_URL).child("Groups").child(grouptomod);
                 Map<String, Object> taskMap = new HashMap<String, Object>();
 
-                Integer flag = 1;
+                //Integer flag = 1;
 
-                if(name.isEmpty() )
-                {   //EditText is empty
-                    //taskMap.put("title", "Vacio");
-                    flag = 0;
-                }
-                else
-                {   //EditText is not empty
-                    taskMap.put("title", name);
-                }
+                Boolean val = validateForm(name); //Validate data
 
-                if(icon.isEmpty() )
-                {   //EditText is empty
-                    //taskMap.put("title", "Vacio");
-                }
-                else
-                {   //EditText is not empty
-                    taskMap.put("icon", icon);
-                }
+                if (val) {
 
-                if(noti.isEmpty() )
-                {   //EditText is empty
-                    //taskMap.put("title", "Vacio");
-                }
-                else
-                {   //EditText is not empty
-                    taskMap.put("noti", noti);
-                }
+                    if (name.isEmpty()) {   //EditText is empty
+                        //taskMap.put("title", "Vacio");
+                        //flag = 0;
+                    } else {   //EditText is not empty
+                        taskMap.put("title", name);
+                    }
 
-                //Update new data in the label "Groups"
-                refmod.updateChildren(taskMap);
+                    if (icon.isEmpty()) {   //EditText is empty
+                        //taskMap.put("title", "Vacio");
+                    } else {   //EditText is not empty
+                        taskMap.put("icon", icon);
+                    }
 
-                //if (flag == 1) {
-                if (false){
-                    //Update the new name of the group in each user
-                    final Firebase regseemem = refmod.child("members");
-                    regseemem.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot snapshot) {
+                    if (noti.isEmpty()) {   //EditText is empty
+                        //taskMap.put("title", "Vacio");
+                    } else {   //EditText is not empty
+                        taskMap.put("noti", noti);
+                    }
 
-                            for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                                String groupID = postSnapshot.child("userID").getValue().toString();
+                    //Update new data in the label "Groups"
+                    refmod.updateChildren(taskMap);
 
-                                Firebase refgrouse = new Firebase(Config.FIREBASE_URL).child("Users").child(groupID);
-                                Firebase refgrouse2 = refgrouse.child("groups").child(grouptomod).child("group");
-                                refgrouse2.setValue(name);
+                    //if (flag == 1) {
+                    if (false) {
+                        //Update the new name of the group in each user
+                        final Firebase regseemem = refmod.child("members");
+                        regseemem.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot snapshot) {
+
+                                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                                    String groupID = postSnapshot.child("userID").getValue().toString();
+
+                                    Firebase refgrouse = new Firebase(Config.FIREBASE_URL).child("Users").child(groupID);
+                                    Firebase refgrouse2 = refgrouse.child("groups").child(grouptomod).child("group");
+                                    refgrouse2.setValue(name);
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onCancelled(FirebaseError error) {
-                        }
+                            @Override
+                            public void onCancelled(FirebaseError error) {
+                            }
 
-                    });
+                        });
+                    }
+
+                    Intent i = new Intent(ModifyActivity.this, MainActivity.class);
+                    i.putExtra("group_name", name);
+                    startActivity(i);
+                    finish();
                 }
-
-                Intent i = new Intent(ModifyActivity.this, MainActivity.class);
-                i.putExtra("group_name", name);
-                startActivity(i);
-                finish();
             }
         });
         
@@ -152,4 +149,19 @@ public class ModifyActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    private boolean validateForm(String g_name) {
+        boolean valid = true;
+
+        if (TextUtils.isEmpty(g_name)) {
+            mod_group_name.setError(getString(R.string.error));
+            valid = false;
+        } else {
+            mod_group_name.setError(null);
+        }
+
+
+        return valid;
+    }
+
 }
