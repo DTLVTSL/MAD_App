@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                     startActivity(getIntent());
                     //Toast.makeText(getApplicationContext(),"Your group list has changed", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(),getString(R.string.group_changed), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),getString(R.string.group_changed), Toast.LENGTH_SHORT).show();
                 }
 
             }
