@@ -1,6 +1,9 @@
 package com.example.mad.lab2;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,12 +14,24 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+import com.firebase.client.Firebase;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
-public class new_item_activity extends AppCompatActivity {
+public class new_item_activity extends AppCompatActivity implements View.OnClickListener{
 
     private EditText new_item_name;
     private EditText new_item_price;
@@ -24,11 +39,33 @@ public class new_item_activity extends AppCompatActivity {
     private EditText new_item_alert;
     private Button new_item_save;
     //private Button but_cancel;
+    //private Button but_cancel;
+    private ImageButton mSelectImage;
+    private ImageButton mSelectImageCamera;
+
+    private ImageView imageView2;
+    private EditText editTextUserId;
+    private static final int CAMERA_REQUEST = 1;
+    private static final int GALLERY_INTENT = 2;
+    //defining firebaseauth object
+    public FirebaseAuth firebaseAuth;
+    DatabaseReference databaseUser;
+    private StorageReference mStorage;
+    private ProgressDialog progressDialog;
+    private Bundle b;
+    private String name;
+    private String GroupID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_item);
+
+        //initializing firebase auth object
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseUser = FirebaseDatabase.getInstance().getReference();
+        mStorage = FirebaseStorage.getInstance().getReference();
+        b = getIntent().getExtras();
 
         new_item_name = (EditText) findViewById(R.id.new_item_name);
         new_item_price = (EditText) findViewById(R.id.new_item_price);
@@ -36,7 +73,14 @@ public class new_item_activity extends AppCompatActivity {
         new_item_alert = (EditText) findViewById(R.id.new_item_alert);
         new_item_save = (Button) findViewById(R.id.new_item_save);
         //but_cancel = (Button) findViewById(R.id.new_item_cancell);
-
+        //but_cancel = (Button) findViewById(R.id.new_item_cancell);
+        mSelectImage = (ImageButton) findViewById(R.id.selectImage);
+        mSelectImageCamera = (ImageButton) findViewById(R.id.selectImageCamera);
+        imageView2 = (ImageView) findViewById(R.id.imageView2);
+        mSelectImage.setOnClickListener(this);
+        mSelectImageCamera.setOnClickListener(this);
+        Bundle bundle = getIntent().getExtras();
+        GroupID =bundle.getString("GroupID");
         //Spiner
         final Spinner spinner_cur = (Spinner) findViewById(R.id.spin_item_currency);
         ArrayAdapter<CharSequence> adap = ArrayAdapter.createFromResource(this,
@@ -54,7 +98,7 @@ public class new_item_activity extends AppCompatActivity {
 
 
         //access to the group id
-        Bundle bundle = getIntent().getExtras();
+        //Bundle bundle = getIntent().getExtras();
         final String group_id=bundle.getString("group_id");
         final String group_name=bundle.getString("group_name");
 
@@ -127,6 +171,8 @@ public class new_item_activity extends AppCompatActivity {
         }
 
 
+
+
     private boolean validateForm(String name, String price) {
         boolean valid = true;
 
@@ -150,6 +196,7 @@ public class new_item_activity extends AppCompatActivity {
         return valid;
     }
 
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
@@ -158,6 +205,48 @@ public class new_item_activity extends AppCompatActivity {
             finish();
         }
         return super.onKeyDown(keyCode, event);
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+            Uri imageUri = data.getData();
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            imageView2.setImageURI(imageUri);
+
+            StorageReference filepath = mStorage.child("Groups").child(GroupID).child("Items").child("ItemImage.jpg");
+            filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
+                public void onSuccess(  UploadTask.TaskSnapshot taskSnapshot){
+                    Toast.makeText(new_item_activity.this, "Upload Done ",Toast.LENGTH_LONG).show();
+                    //progressDialog.setMessage("Uploading, please wait...");
+                }
+            });
+
+        }
+        else if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK && null != data) {
+            Uri imageUri = data.getData();
+            imageView2.setImageURI(imageUri);
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            StorageReference filepath = mStorage.child("Groups").child(GroupID).child("Items").child("ItemImage.jpg");
+            filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
+                public void onSuccess(  UploadTask.TaskSnapshot taskSnapshot){
+                    Toast.makeText(new_item_activity.this, "Upload Done ",Toast.LENGTH_LONG).show();
+                    //progressDialog.setMessage("Uploading, please wait...");
+                }
+            });
+        }
+    }
+
+    public void onClick(View view) {
+
+        if (view == mSelectImage){
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            startActivityForResult(intent,GALLERY_INTENT);
+
+        }
+        if (view == mSelectImageCamera){
+            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(cameraIntent, CAMERA_REQUEST);
+        }
     }
 
 

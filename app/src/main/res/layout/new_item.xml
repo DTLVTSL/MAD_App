@@ -4,6 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="100dp"
+        android:layout_above="@+id/linearLayout"
+        android:layout_below="@+id/new_item_save" />
 
     <EditText
         android:id="@+id/new_item_name"
@@ -80,6 +88,42 @@
         android:layout_marginBottom="23dp"
         android:visibility="gone"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="119dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/linearLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/Imagine"
+            android:layout_width="107dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:text="Insert a product image "
+            android:layout_weight="0.11" />
+
+        <ImageButton
+            android:id="@+id/selectImage"
+            android:layout_width="53dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/gallery" />
+
+        <ImageButton
+            android:id="@+id/selectImageCamera"
+            android:layout_width="58dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/camera" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/new_item_save"
